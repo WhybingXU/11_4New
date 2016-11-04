@@ -3,7 +3,7 @@
 from flask_script import Manager
 from app import creat_new
 
-app = creat_new( 'default')
+app = creat_new()
 manage=Manager(app)
 
 
