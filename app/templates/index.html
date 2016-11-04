@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{%  import 'bootstrap/wtf.html' as wtf %}
 
 {% block title %}11_4New  -- Index{% endblock %}
 
@@ -7,12 +8,13 @@
 {# {{ moment.lang('zh-CN') }}#}
 {% block page_content %}
     <div class="page-header">
-        <h1>Hello, {{ name|capitalize }}!</h1>
-
+        <h1>Hello, {% if name %}{{ name|capitalize }} {% else   %}  Stranger{% endif  %}!</h1>
     </div>
-
+{{ wtf.quick_form(form) }}
 
 {#    <p>Time NOW:{{moment(time_click).format('LLL') }}</p>#}
 {#    <p>That was {{meoment(time_click).formNow(refresh=True) }}</p>#}
 
 {% endblock %}
+
+

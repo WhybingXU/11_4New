@@ -2,7 +2,7 @@
 from flask import render_template
 from . import mainnew
 
-@mainnew.errorhandler(400)
+@mainnew.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'),404
 
