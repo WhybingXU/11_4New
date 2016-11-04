@@ -1,10 +1,10 @@
 # -*- coding: UTF-8 -*-
-from flask import Flask
+from flask import render_template
 from . import mainnew#导入mainnew蓝本
 
-@mainnew.route('/')#mainnew蓝本内路由
-def index():
+@mainnew.route('/<name>')#mainnew蓝本内路由
+def index(name):
 
 
-    return 'hello wor88888</h>'
+    return render_template('index.html',name=name)
 
