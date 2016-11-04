@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 
-{% block title %}11_4New{% endblock %}
+{% block title %}11_4New  -- Index{% endblock %}
 
 
 
-
+{# {{ moment.lang('zh-CN') }}#}
 {% block page_content %}
     <div class="page-header">
         <h1>Hello, {{ name|capitalize }}!</h1>
+
     </div>
+
+
+{#    <p>Time NOW:{{moment(time_click).format('LLL') }}</p>#}
+{#    <p>That was {{meoment(time_click).formNow(refresh=True) }}</p>#}
+
 {% endblock %}
