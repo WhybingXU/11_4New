@@ -1,16 +1,30 @@
 # -*- coding: UTF-8 -*-
 #启动脚本
-from flask_script import Manager
-from app import creat_new
+import os
+from app import create_new, db
+from app.models import User, Role
+from flask_script import Manager, Shell
+from flask_migrate import Migrate, MigrateCommand
 
-app = creat_new()
-manage=Manager(app)
+app = create_new(os.getenv('FLASK_CONFIG') or 'default')
+manager = Manager(app)
+migrate = Migrate(app, db)
 
 
-# @app.route('/')
-# def hello_world():
-#     return 'Hello World!'
+def make_shell_context():
+    return dict(app=app, db=db, User=User, Role=Role)
+manager.add_command("shell", Shell(make_context=make_shell_context))
+manager.add_command('db', MigrateCommand)
+
+
+@manager.command
+def test():
+    """Run the unit tests."""
+    import unittest
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner(verbosity=2).run(tests)
 
 
 if __name__ == '__main__':
-    manage.run()
+    manager.run()
+
